@@ -2,7 +2,7 @@ let isBillThisYear = (account, adjust = 0) =>  new Date().getFullYear() > new Da
 let isBillThisMonth = (account, adjust = 0) => new Date().getMonth() > new Date(account.billed).getMonth() + adjust;
 let isBeforeTheBillDate = (account, adjust = 0) => new Date().getDate() > new Date(account.billed).getDate() + adjust;
 
-export const willBeCreated = (account) => {
+const willBeCreated = (account) => {
     switch (account.plan) {
         case 'daily':
             return isBeforeTheBillDate(account, 0);
@@ -18,3 +18,5 @@ export const willBeCreated = (account) => {
             return false
     }
 }
+
+module.exports = { willBeCreated }
